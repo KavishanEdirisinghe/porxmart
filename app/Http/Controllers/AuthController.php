@@ -64,7 +64,8 @@ class AuthController extends Controller
         try {
             $data = $request->validate([
                 'nic' => 'required|unique:user,nic',
-                'name' => 'required',
+                'fname' => 'required',
+                'lname' => 'required',
                 'mobile' => 'required',
                 'email' => 'required|unique:user,email',
                 'password' => 'required',
@@ -74,7 +75,8 @@ class AuthController extends Controller
 
             $user = User::create([
                 'nic' => $data['nic'],
-                'name' => $data['name'],
+                'fist_name' => $data['fname'],
+                'last_name' => $data['lname'],
                 'contact_no' => $data['mobile'],
                 'email' => $data['email'],
                 'user_type_id' => null,

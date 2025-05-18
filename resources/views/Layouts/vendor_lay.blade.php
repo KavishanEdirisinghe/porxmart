@@ -134,7 +134,7 @@
                                 <img src="{{ asset('asset/images/role_2.jpeg') }}" alt="admin">
                             </div>
                             @if (session('vendor'))
-                                <span class="name">{{ session('vendor')->name }}</span>
+                                <span class="name">{{ session('vendor')->fist_name }}</span>
                             @else
                                 <span class="name">No admin email in session.</span>
                             @endif

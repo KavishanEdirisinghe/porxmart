@@ -42,9 +42,20 @@
                         <div class="space-y-1">
                             <label for="name"
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
-                                Name
+                                Fist Name
                             </label>
-                            <input id="name" name="name" value="{{ old('name') }}"
+                            <input id="fname" name="fname" value="{{ old('name') }}"
+                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-[#0b0b0b] shadow-[0px_4px_4px_#00000040]" />
+                            @error('name')
+                                <span class="text-red-400 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="space-y-1">
+                            <label for="name"
+                                class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
+                                Last Name
+                            </label>
+                            <input id="lname" name="lname" value="{{ old('name') }}"
                                 class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-[#0b0b0b] shadow-[0px_4px_4px_#00000040]" />
                             @error('name')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
