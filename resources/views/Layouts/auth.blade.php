@@ -25,6 +25,9 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+          html {
+    scroll-behavior: smooth;
+  }
     </style>
 </head>
 
@@ -36,11 +39,18 @@
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
-                        <div class="flex-shrink-0 flex items-center">
-                            <a href="">
-                                <img src="{{ asset('asset/images/logo-1.png') }}" alt="Logo" class="h-8 w-auto">
-                            </a>
-                        </div>
+               <div class="flex-shrink-0 flex items-center">
+    <div class="flex items-center flex-col space-y-1"> <!-- Fixed typo and added spacing -->
+    <a href="" class="flex-shrink-0 flex items-center">
+    <img src="{{ asset('asset/images/logo-1.png') }}" alt="Logo 1" class="h-8 w-auto">
+</a>
+
+        <a href="">
+            <img src="{{ asset('asset/images/logo-2.png') }}" alt="Logo 2" class="h-4 w-auto">
+        </a>
+    </div>
+</div>
+
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:ml-10 sm:flex">
@@ -48,9 +58,17 @@
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
                                 Home
                             </a>
-                            <a href="/about-us"
+                            <a href="#about"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
                                 About Us
+                            </a>
+                            <a href="#services"
+                                class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
+                                 Services
+                            </a>
+                            <a href="#contact"
+                                class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
+                                Contact Us
                             </a>
                       
                         </div>
@@ -58,49 +76,10 @@
 
                     <!-- Authentication Links -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        @guest
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline mr-4">Log in</a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
+                                <a href="{{ route('login') }}"
                                     class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Register
+                                    Log in
                                 </a>
-                            @endif
-                        @else
-                            <div class="ml-3 relative">
-                                <div>
-                                    <button type="button"
-                                        class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition"
-                                        id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                        {{-- {{ Auth::user()->name }} --}}
-                                        <svg class="ml-1 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                                    tabindex="-1" id="user-dropdown">
-                                    <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem">Your Profile</a>
-                                    <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem">Dashboard</a>
-
-                                    <form method="POST" action="">
-                                        @csrf
-                                        <button type="submit"
-                                            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                            role="menuitem">
-                                            Log Out
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        @endguest
                     </div>
 
                     <!-- Mobile menu button -->
@@ -302,6 +281,21 @@
             }
         });
     </script>
+
+    <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+
 </body>
 
 </html>

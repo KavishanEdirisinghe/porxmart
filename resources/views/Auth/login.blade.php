@@ -104,7 +104,7 @@
 
             <p class="mt-6 text-center text-white">
                 Don't have an account yet?
-                <a href="{{ route('register') }}" class="font-semibold hover:text-gray-200">
+                <a href="{{ route('register') }}" class="font-bold text-blue-200 cursor-pointer hover:text-blue-400">
                     Sign up
                 </a>
             </p>

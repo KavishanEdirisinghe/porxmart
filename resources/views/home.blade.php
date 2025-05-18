@@ -44,12 +44,19 @@
         </div>
 
         {{-- About Us Section --}}
+        <div id="about">
         @include('components.about')
 
-        {{-- Services --}}
-        @include('components.services')
+        </div>
 
-        {{-- Contact Info --}}
-        @include('components.contact')
+        {{-- Services --}}
+        <div id="services">
+            @include('components.services')
+</div>
+{{-- Contact Info --}}
+        <div id="contact">
+            @include('components.contact')
+</div>
+
     </div>
 @endsection

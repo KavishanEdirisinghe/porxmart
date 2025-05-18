@@ -44,8 +44,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 Fist Name
                             </label>
-                            <input id="fname" name="fname" value="{{ old('name') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-[#0b0b0b] shadow-[0px_4px_4px_#00000040]" />
+                            <input id="fname" name="fname" placeholder="First Name" value="{{ old('name') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('name')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -55,8 +55,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 Last Name
                             </label>
-                            <input id="lname" name="lname" value="{{ old('name') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-[#0b0b0b] shadow-[0px_4px_4px_#00000040]" />
+                            <input id="lname" name="lname" placeholder="Last Name" value="{{ old('name') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('name')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -67,8 +67,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 National Identity Card Number
                             </label>
-                            <input id="nic" name="nic" value="{{ old('nic') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040]" />
+                            <input id="nic" name="nic" placeholder="National Identity Card Number" value="{{ old('nic') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('nic')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -79,8 +79,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 Mobile Number
                             </label>
-                            <input id="mobile" name="mobile" value="{{ old('mobile') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040]" />
+                            <input id="mobile" placeholder="Mobile Number" name="mobile" value="{{ old('mobile') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('mobile')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -91,8 +91,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 Email Address
                             </label>
-                            <input id="email" name="email" type="email" value="{{ old('email') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040]" />
+                            <input id="email" placeholder="Email Address" name="email" type="email" value="{{ old('email') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('email')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -103,8 +103,8 @@
                                 class="block font-bold text-white text-base font-['Times_New_Roman-Bold',Helvetica]">
                                 Password
                             </label>
-                            <input id="password" name="password" type="password" value="{{ old('password') }}"
-                                class="w-[276px] h-[33px] bg-white rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040]" />
+                            <input id="password" name="password" placeholder="Password" type="password" value="{{ old('password') }}"
+                                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 @error('email') border-red-500 @enderror" />
                             @error('email')
                                 <span class="text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -131,8 +131,8 @@
 
                     <p class="mt-4 font-semibold text-white text-sm text-center font-['Inter',Helvetica]">
                         {{ $isLogin ? "Don't have an account?" : 'Already have an account?' }}
-                        <a href="{{ $isLogin ? route('login') : route('register') }}"
-                            class="font-bold cursor-pointer hover:text-gray-200">
+                        <a href="{{route('login') }}"
+                            class="font-bold text-blue-200 cursor-pointer hover:text-blue-400">
                             {{ $isLogin ? 'Sign up' : 'Login' }}
                         </a>
                     </p>
