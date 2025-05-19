@@ -58,19 +58,29 @@
 
                     <!-- Expected Yield -->
                     <div class="col-span-1">
-                        <label for="expected_yield" class="block text-sm font-medium text-gray-700 mb-1">Expected
-                            Yield
-                            (kg)</label>
+                        <label for="expected_yield_input" class="block text-sm font-medium text-gray-700 mb-1">Expected
+                            Yield</label>
                         <div class="relative mt-1 rounded-md shadow-sm">
-                            <input type="number" step="0.01" id="expected_yield" name="expected_yield" required
+                            <input type="number" step="0.01" id="expected_yield_input" name="expected_yield_display"
+                                required
                                 class="block w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                                placeholder="0.00" value="{{ $products->expected_yeild }}">
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                <span class="text-gray-500 sm:text-sm">kg</span>
+                                placeholder="0.00" value="{{ old('expected_yield_display', $expectedYieldDisplay) }}">
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-24">
+                                <select id="unit_selector" class="border-none bg-transparent text-gray-700 focus:ring-0">
+                                    <option value="kg"
+                                        {{ old('expected_yield_unit', $expectedYieldUnit) === 'kg' ? 'selected' : '' }}>kg
+                                    </option>
+                                    <option value="mt"
+                                        {{ old('expected_yield_unit', $expectedYieldUnit) === 'mt' ? 'selected' : '' }}>mt
+                                    </option>
+                                </select>
                             </div>
                         </div>
+                        <!-- Hidden field to submit converted mt value -->
+                        <input type="hidden" name="expected_yield" id="expected_yield_converted">
                     </div>
+
+
                 </div>
             </div>
 
@@ -87,5 +97,26 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const form = document.querySelector('#farmLandForm');
+        form.addEventListener('submit', function(e) {
+            const displayValue = parseFloat(document.getElementById('expected_yield_input').value);
+            const unit = document.getElementById('unit_selector').value;
+            const convertedField = document.getElementById('expected_yield_converted');
+            const unitField = document.getElementById('expected_yield_unit_hidden');
+
+            if (isNaN(displayValue)) {
+                alert("Please enter a valid number for expected yield.");
+                e.preventDefault();
+                return;
+            }
+
+            const converted = unit === 'kg' ? displayValue / 1000 : displayValue;
+            convertedField.value = converted;
+            unitField.value = unit;
+        });
+    </script>
+
 
 @endsection

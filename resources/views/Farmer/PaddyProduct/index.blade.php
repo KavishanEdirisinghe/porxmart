@@ -27,7 +27,8 @@
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Land
                                 Registraion No</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Varient</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Varient</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Swan Date</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -43,10 +44,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->registraion_no }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->sawn_date }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $product->expected_yeild }} KG</td>
-                              
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $product->expected_yeild }} MT</td>
+
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ route('paddy_product_edit_index', $product->id ) }}" class="text-green-600 hover:text-green-900 mr-3 edit-btn">Edit</a>
+                                    <a href="{{ route('paddy_product_edit_index', $product->id) }}"
+                                        class="text-green-600 hover:text-green-900 mr-3 edit-btn">Edit</a>
                                     <form action="{{ route('paddy_product_delete', $product->id) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
@@ -55,7 +57,7 @@
                                             Delete
                                         </button>
                                     </form>
-                                        
+
                                 </td>
                             </tr>
                         @endforeach
@@ -164,24 +166,29 @@
                             <!-- Expected Yield -->
                             <div class="col-span-1">
                                 <label for="expected_yield" class="block text-sm font-medium text-gray-700 mb-1">Expected
-                                    Yield
-                                    (kg)</label>
+                                    Yield</label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
-                                    <input type="number" step="0.01" id="expected_yield" name="expected_yield"
-                                        required
+                                    <input type="number" step="0.01" id="expected_yield_display"
+                                        name="expected_yield_display" required
                                         class="block w-full rounded-lg border border-gray-300 bg-white py-3 px-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                                         placeholder="0.00">
-                                    <div
-                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                                        <span class="text-gray-500 sm:text-sm">kg</span>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-24">
+                                        <select id="unit_selector"
+                                            class="border-none bg-transparent text-gray-700 focus:ring-0">
+                                            <option value="kg">kg</option>
+                                            <option value="mt">mt</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <!-- Hidden field to submit converted value in mt -->
+                                <input type="hidden" name="expected_yield" id="expected_yield_converted">
                             </div>
+
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row justify-end gap-3 mt-8">
-                            <button type="button"  id="cancelBtn"
+                            <button type="button" id="cancelBtn"
                                 class="btn-danger px-6 py-2.5 bg-white border border-red-500 text-red-500 rounded-lg font-medium hover:bg-red-50 transition duration-300">
                                 Cancel
                             </button>
@@ -247,5 +254,23 @@
         function closeModal(modal) {
             modal.classList.add('hidden');
         }
+    </script>
+
+    <script>
+        document.querySelector('#farmLandForm').addEventListener('submit', function(e) {
+            const displayValue = parseFloat(document.getElementById('expected_yield_display').value);
+            const unit = document.getElementById('unit_selector').value;
+            const convertedField = document.getElementById('expected_yield_converted');
+
+            if (isNaN(displayValue)) {
+                alert("Please enter a valid number for expected yield.");
+                e.preventDefault();
+                return;
+            }
+
+            // Convert: 1 kg = 0.001 mt
+            const converted = unit === 'kg' ? displayValue / 1000 : displayValue;
+            convertedField.value = converted;
+        });
     </script>
 @endsection

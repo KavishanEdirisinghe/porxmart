@@ -126,7 +126,7 @@
                                             Business Name
                                         </label>
                                         <input id="businessName-1" name="businesses[0][business_name]"
-                                            class="w-full h-10 bg-[#d3dfd1] rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
+                                            class="w-full h-10  rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
                                     </div>
 
                                     <!-- Business Registration Number -->
@@ -137,7 +137,7 @@
                                         </label>
                                         <input id="businessRegistration-1"
                                             name="businesses[0][business_registration_number]"
-                                            class="w-full h-10 bg-[#d3dfd1] rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
+                                            class="w-full h-10  rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
                                     </div>
 
                                     <!-- Business Type -->
@@ -146,7 +146,7 @@
                                             Business Type
                                         </label>
                                         <select id="businessType-1" name="businesses[0][business_type]"
-                                            class="w-full h-10 bg-[#d3dfd1] rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040] text-xs font-semibold px-4">
+                                            class="w-full h-10  rounded-[20px] border border-solid border-black shadow-[0px_4px_4px_#00000040] text-xs font-semibold px-4">
                                             <option value="" disabled selected>Select Business Type</option>
                                             @foreach ($business_types as $business_type)
                                                 <option value="{{ $business_type->id }}">{{ $business_type->type }}
@@ -167,14 +167,18 @@
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row justify-between gap-3 pt-6">
                             <button type="submit" id="register-btn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white">
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
                                 Register
                             </button>
 
                             <button type="button" id="add-business-btn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white flex items-center justify-center">
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
                                 Add Business
                             </button>
+
+                            <button type="button" id="cancelBtn"
+                                class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                                Cancel</button>
 
                         </div>
                     </form>

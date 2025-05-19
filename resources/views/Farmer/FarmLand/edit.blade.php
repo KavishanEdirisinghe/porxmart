@@ -3,7 +3,7 @@
 @section('title', 'Farm Land Edit')
 
 @section('content')
-    <div class="container">
+    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-sm rounded-lg bg-white">
         <form id="farmLandForm" action="{{ route('farm_edit', $land->id) }}" method="POST">
             @csrf
             <div id="lands-container">
@@ -90,12 +90,12 @@
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row justify-between gap-3 pt-6">
                 <button type="submit" id="register-btn"
-                    class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white">
-                    Edit
+                    class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                    Done
                 </button>
 
-                <a href="{{ route('farmer_dashboard') }}"
-                    class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white flex items-center justify-center">
+                <a href="{{ route('farm_land') }}"
+                    class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg flex items-center">
                     Cancel</a>
             </div>
         </form>

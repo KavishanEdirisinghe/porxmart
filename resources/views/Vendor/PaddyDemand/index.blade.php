@@ -44,7 +44,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $paddy_demand->business_name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $paddy_demand->paddy_variety_name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $paddy_demand->timing_name }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $paddy_demand->quantity }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $paddy_demand->quantity }} MT</td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{ route('paddy_demand_edit_index', $paddy_demand->id) }}"
@@ -114,7 +114,7 @@
         <div id="landModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
             <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
                 <div class="mt-3">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4" id="modalTitle">Add New Land</h3>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4" id="modalTitle">Add Paddy Demand</h3>
                     <form id="businessForm" action="{{ route('paddy_demand_create', $user->id) }}" method="POST">
                         @csrf
                         <div id="businesses-container">
@@ -169,14 +169,37 @@
                                         </select>
                                     </div>
 
-                                    <!-- Business Registration Number -->
                                     <div class="flex flex-col space-y-2">
-                                        <label for="Quntity" class="font-sans font-semibold text-black text-base">
-                                            Quntity
+                                        <label for="quantity_display"
+                                            class="font-sans font-semibold text-black text-base">
+                                            Quantity
                                         </label>
-                                        <input id="Quntity" name="quntity" type="number"
-                                            class="w-full h-10 bg-[#d3dfd1] rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
+                                        <div class="relative">
+                                            <input id="quantity_display" name="quantity_display" type="number"
+                                                step="0.01" required
+                                                class="w-full h-10 bg-[#d3dfd1] rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4 pr-24"
+                                                placeholder="0.00"
+                                                value="{{ old('quantity_display', isset($product) ? ($product->quantity >= 1 ? $product->quantity : $product->quantity * 1000) : '') }}">
+
+                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                                <select id="quantity_unit_selector"
+                                                    class="bg-transparent border-none text-black focus:ring-0">
+                                                    <option value="kg"
+                                                        {{ old('quantity_unit', isset($product) && $product->quantity < 1 ? 'kg' : '') == 'kg' ? 'selected' : '' }}>
+                                                        kg</option>
+                                                    <option value="mt"
+                                                        {{ old('quantity_unit', isset($product) && $product->quantity >= 1 ? 'mt' : '') == 'mt' ? 'selected' : '' }}>
+                                                        mt</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Hidden input to send value in mt -->
+                                        <input type="hidden" name="quantity" id="quantity_converted">
+                                        <input type="hidden" name="quantity_unit" id="quantity_unit_hidden"
+                                            value="{{ old('quantity_unit') }}">
                                     </div>
+
 
                                 </div>
                             </div>
@@ -185,9 +208,12 @@
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row justify-between gap-3 pt-6">
                             <button type="submit" id="register-btn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white">
-                                Register
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                                Create
                             </button>
+                            <button type="button" id="cancelBtn"
+                                class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                                Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -307,4 +333,24 @@
             });
         });
     </script>
+
+    <script>
+        document.querySelector('#businessForm').addEventListener('submit', function(e) {
+
+            // Quantity
+            const qtyInput = parseFloat(document.getElementById('quantity_display')?.value);
+            const qtyUnit = document.getElementById('quantity_unit_selector')?.value;
+            const qtyConverted = document.getElementById('quantity_converted');
+            const qtyUnitHidden = document.getElementById('quantity_unit_hidden');
+
+            if (!isNaN(qtyInput)) {
+                qtyConverted.value = qtyUnit === 'kg' ? qtyInput / 1000 : qtyInput;
+                qtyUnitHidden.value = qtyUnit;
+            } else {
+                alert("Please enter a valid number for quantity.");
+                e.preventDefault();
+            }
+        });
+    </script>
+
 @endsection

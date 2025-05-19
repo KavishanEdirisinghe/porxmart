@@ -190,7 +190,7 @@
                                     <!-- Land Size -->
                                     <div class="flex flex-col space-y-2">
                                         <label for="landSize-1" class="font-sans font-semibold text-black text-base">
-                                            Land Size
+                                            Land Size (Acres)
                                         </label>
                                         <input id="landSize-1" name="lands[0][landSize]"
                                             class="w-full h-10 rounded-[20px] border border-solid border-[#040404] shadow-[0px_4px_4px_#00000040] px-4" />
@@ -208,16 +208,16 @@
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row justify-between gap-3 pt-6">
                             <button type="submit" id="register-btn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white">
-                                Register
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
+                                Done
                             </button>
 
                             <button type="button" id="add-land-btn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white flex items-center justify-center">
+                                class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg flex items-center">
                                 Add Land
                             </button>
                             <button type="button" id="cancelBtn"
-                                class="w-full sm:w-auto px-6 h-10 bg-black rounded-2xl shadow-[0px_4px_4px_#00000040] text-[13px] font-semibold text-white flex items-center justify-center">
+                                class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg flex items-center">
                                 Cancel</button>
                         </div>
                     </form>

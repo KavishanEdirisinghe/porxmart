@@ -95,6 +95,11 @@ class PaddyProductController extends Controller
 
 
         $products = Paddy_product::where('id', $id)->first();
+
+        $expectedYieldInMt = $products->expected_yeild;
+        $expectedYieldDisplay = $expectedYieldInMt >= 1 ? $expectedYieldInMt : $expectedYieldInMt * 1000;
+        $expectedYieldUnit = $expectedYieldInMt >= 1 ? 'mt' : 'kg';
+
         if (!$products) {
             return redirect()->back()->with('error', 'Product not found');
         }
@@ -106,6 +111,8 @@ class PaddyProductController extends Controller
             'user' => $user,
             'lands' => $lands,
             'paddyVarieties' => $paddyVarieties,
+            'expectedYieldDisplay' => $expectedYieldDisplay,
+            'expectedYieldUnit' => $expectedYieldUnit,
         ]);
     }
 

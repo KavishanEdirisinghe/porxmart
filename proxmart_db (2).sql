@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2025 at 04:24 PM
+-- Generation Time: May 19, 2025 at 05:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -14579,7 +14579,7 @@ CREATE TABLE `other_fact` (
 
 CREATE TABLE `paddy_demand` (
   `id` int(11) NOT NULL,
-  `quantity` varchar(100) DEFAULT NULL,
+  `quantity` float DEFAULT NULL,
   `business_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `paddy_varieties_id` int(11) NOT NULL,
@@ -14598,7 +14598,7 @@ CREATE TABLE `paddy_demand` (
 CREATE TABLE `paddy_production` (
   `id` int(11) NOT NULL,
   `sawn_date` date DEFAULT NULL,
-  `expected_yeild` int(11) DEFAULT NULL,
+  `expected_yeild` float DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `fam_land_id` int(11) NOT NULL,
   `paddy_varieties_id` int(11) NOT NULL,
@@ -14756,8 +14756,8 @@ CREATE TABLE `user_type` (
 --
 
 INSERT INTO `user_type` (`id`, `type`, `count`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Farmer', '3', 1, '2025-04-09 08:11:19', '2025-05-07 03:49:18'),
-(2, 'Vendor', '3', 1, '2025-04-09 08:11:19', '2025-05-07 04:02:33');
+(1, 'Farmer', '4', 1, '2025-04-09 08:11:19', '2025-05-19 04:29:48'),
+(2, 'Vendor', '4', 1, '2025-04-09 08:11:19', '2025-05-19 10:03:11');
 
 -- --------------------------------------------------------
 
@@ -14925,7 +14925,7 @@ ALTER TABLE `divisional_secretariat`
 -- AUTO_INCREMENT for table `farm_land`
 --
 ALTER TABLE `farm_land`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `grama_niladhari_division`
@@ -14979,7 +14979,7 @@ ALTER TABLE `timing`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_type`

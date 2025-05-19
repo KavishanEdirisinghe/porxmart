@@ -23,9 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/about-us', function () {
-    return view('about-us');
-});
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');

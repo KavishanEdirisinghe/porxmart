@@ -54,14 +54,14 @@ class PaddyDemandController extends Controller
             $validated =  $request->validate([
                 'business' => 'required',
                 'timing' => 'required',
-                'quntity' => 'required',
+                'quantity' => 'required',
                 'paddy_varieties' => 'required|array',
                 'paddy_varieties.*' => 'exists:paddy_varieties,id',
             ]);
 
             foreach ($validated['paddy_varieties'] as $varietyId) {
                 Paddy_demand::create([
-                    'quantity' => $validated['quntity'],
+                    'quantity' => $validated['quantity'],
                     'business_id' => $validated['business'],
                     'user_id' => $id,
                     'paddy_varieties_id' => $varietyId,
@@ -108,6 +108,7 @@ class PaddyDemandController extends Controller
 
     public function edit(Request $request, $id)
     {
+        // dd($request->all());
         try {
             // Validate the request data
             $validated =  $request->validate([
