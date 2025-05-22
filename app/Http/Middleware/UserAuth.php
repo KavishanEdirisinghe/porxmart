@@ -16,7 +16,7 @@ class UserAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session()->has('farmer') && !Session()->has('vendor') ) {
+        if (!Session()->has('farmer') && !Session()->has('vendor') && !Session()->has('admin') ) {
             Session(['url.intended' => $request->url()]);
 
             return redirect('/login')->with('error', 'You have to log in first.');

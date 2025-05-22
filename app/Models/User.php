@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $table = 'user'; 
+    protected $table = 'user';
 
     protected $fillable = [
         'id',
@@ -22,4 +22,6 @@ class User extends Model
         'created_at',
         'updated_at',
     ];
+
+
 }

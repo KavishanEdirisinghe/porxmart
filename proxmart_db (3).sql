@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2025 at 05:54 PM
+-- Generation Time: May 22, 2025 at 01:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -14639,7 +14639,8 @@ INSERT INTO `paddy_varieties` (`id`, `name`, `description`, `harvest_time`, `ave
 (7, 'variety_7\r\n', 'description_7\r\n', 90, 5000, 'Red', 1, '2025-04-09 07:43:43', '2025-04-09 07:43:43'),
 (8, 'variety_8\r\n', 'description_8\r\n', 75, 5000, 'white', 1, '2025-04-09 07:43:43', '2025-04-09 07:43:43'),
 (9, 'variety_9\r\n', 'description_9\r\n', 100, 4000, 'Red', 1, '2025-04-09 07:43:43', '2025-04-09 07:43:43'),
-(10, 'variety_10\r\n', 'description_10\r\n', 120, 4000, 'Red', 1, '2025-04-09 07:43:43', '2025-04-09 07:43:43');
+(10, 'variety_10\r\n', 'description_10\r\n', 120, 4000, 'Red', 1, '2025-04-09 07:43:43', '2025-04-09 07:43:43'),
+(11, 'Edit Test variety', 'Test edit variety descrtiption', 100, 80, 'Brown', 0, '2025-05-22 00:03:39', '2025-05-22 00:11:06');
 
 -- --------------------------------------------------------
 
@@ -14756,8 +14757,9 @@ CREATE TABLE `user_type` (
 --
 
 INSERT INTO `user_type` (`id`, `type`, `count`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Farmer', '4', 1, '2025-04-09 08:11:19', '2025-05-19 04:29:48'),
-(2, 'Vendor', '4', 1, '2025-04-09 08:11:19', '2025-05-19 10:03:11');
+(1, 'Farmer', '0', 1, '2025-04-09 08:11:19', '2025-05-22 11:56:41'),
+(2, 'Vendor', '0', 1, '2025-04-09 08:11:19', '2025-05-22 11:56:44'),
+(3, 'Admin', '0', 1, '2025-05-21 05:38:05', '2025-05-21 05:38:05');
 
 -- --------------------------------------------------------
 
@@ -14955,7 +14957,7 @@ ALTER TABLE `paddy_production`
 -- AUTO_INCREMENT for table `paddy_varieties`
 --
 ALTER TABLE `paddy_varieties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `production_history`
@@ -14985,7 +14987,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `weather_data`

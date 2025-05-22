@@ -219,6 +219,8 @@ class AuthController extends Controller
                     $request->session()->put('farmer', $user);
                 } elseif ($user->user_type_id == 2) {
                     $request->session()->put('vendor', $user);
+                } elseif ($user->user_type_id == 3) {
+                    $request->session()->put('admin', $user);
                 }
                 $responseData = ['success' => true, 'message' => 'Login successfully'];
             } else {
@@ -237,9 +239,59 @@ class AuthController extends Controller
                 return redirect()->route('farmer_dashboard');
             } elseif ($user->user_type_id == 2) {
                 return redirect()->route('vendor_dashboard');
+            } elseif ($user->user_type_id == 3) {
+                return redirect()->route('admin_dashboard');
             }
         } else {
             return back()->with('error', $responseData['message']);
+        }
+    }
+
+
+    public function admin_login()
+    {
+        return view('auth.admin-login', ['isLogin' => true]);
+    }
+    public function admin_registration_index()
+    {
+        return view('auth.admin-registration');
+    }
+
+    public function admin_registration(Request $request)
+    {
+        // dd($request->all());
+        try {
+            $data = $request->validate([
+                'nic' => 'required|unique:user,nic',
+                'fname' => 'required',
+                'lname' => 'required',
+                'mobile' => 'required',
+                'email' => 'required|unique:user,email',
+                'password' => 'required',
+            ]);
+            if ($request->password != $request->password_confirmation) {
+                return redirect()->back()->with('error', 'Password and confirm password do not match');
+            }
+
+            $hash_password = Hash::make($request->password);
+
+            $user = User::create([
+                'nic' => $data['nic'],
+                'fist_name' => $data['fname'],
+                'last_name' => $data['lname'],
+                'contact_no' => $data['mobile'],
+                'email' => $data['email'],
+                'user_type_id' => 3,
+                'password' => $hash_password
+            ]);
+
+            return redirect()->route('login')->with('success', 'Admin Registration successfully');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->validator->errors();
+            return redirect()->back()->withErrors($errors)->withInput()->with('error', $errors);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), ['stack' => $e->getTraceAsString()]);
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
 

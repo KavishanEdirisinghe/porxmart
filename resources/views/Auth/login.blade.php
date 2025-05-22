@@ -12,7 +12,7 @@
 
     <div class="relative flex items-center justify-center min-h-[calc(100vh-64px)]">
         <div class="bg-black/30 backdrop-blur-md p-8 rounded-3xl w-full max-w-md">
-            <h2 class="text-3xl font-bold text-white text-center mb-8">Login</h2>
+            <h2 class="text-3xl font-bold text-white text-center mb-8"><a href="{{ route('admin_registration_index') }}">Login</a></h2>
 
             <button class="w-full bg-white text-black rounded-xl py-3 px-4 flex items-center justify-center gap-3 hover:bg-gray-100 transition-colors mb-6">
                 <img

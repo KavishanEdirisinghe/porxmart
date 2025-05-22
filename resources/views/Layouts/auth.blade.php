@@ -25,9 +25,10 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-          html {
-    scroll-behavior: smooth;
-  }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 
@@ -39,17 +40,17 @@
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
-               <div class="flex-shrink-0 flex items-center">
-    <div class="flex items-center flex-col space-y-1"> <!-- Fixed typo and added spacing -->
-    <a href="" class="flex-shrink-0 flex items-center">
-    <img src="{{ asset('asset/images/logo-1.png') }}" alt="Logo 1" class="h-8 w-auto">
-</a>
+                        <div class="flex-shrink-0 flex items-center">
+                            <div class="flex items-center flex-col space-y-1"> <!-- Fixed typo and added spacing -->
+                                <a href="" class="flex-shrink-0 flex items-center">
+                                    <img src="{{ asset('asset/images/logo-1.png') }}" alt="Logo 1" class="h-8 w-auto">
+                                </a>
 
-        <a href="">
-            <img src="{{ asset('asset/images/logo-2.png') }}" alt="Logo 2" class="h-4 w-auto">
-        </a>
-    </div>
-</div>
+                                <a href="">
+                                    <img src="{{ asset('asset/images/logo-2.png') }}" alt="Logo 2" class="h-4 w-auto">
+                                </a>
+                            </div>
+                        </div>
 
 
                         <!-- Navigation Links -->
@@ -64,22 +65,22 @@
                             </a>
                             <a href="#services"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
-                                 Services
+                                Services
                             </a>
                             <a href="#contact"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition">
                                 Contact Us
                             </a>
-                      
+
                         </div>
                     </div>
 
                     <!-- Authentication Links -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
-                                <a href="{{ route('login') }}"
-                                    class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Log in
-                                </a>
+                        <a href="{{ route('login') }}"
+                            class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Log in
+                        </a>
                     </div>
 
                     <!-- Mobile menu button -->
@@ -283,18 +284,18 @@
     </script>
 
     <script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth'
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-      }
-    });
-  });
-</script>
+    </script>
 
 </body>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\FarmerContoller;
@@ -35,6 +36,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/farm-land-registration/{id}', 'farm_land_registration')->name('farm_land_registration');
     Route::post('/business-registration/{id}', 'business_registration')->name('business_registration');
     Route::post('/login-process', 'login_process')->name('login_process');
+
+    Route::get('/admin', 'admin_login')->name('admin_login');
+    Route::get('/admin-reg', 'admin_registration_index')->name('admin_registration_index');
+    Route::post('/admin-reg', 'admin_registration')->name('admin_registration');
+
 
 
 
@@ -86,4 +92,20 @@ Route::controller(PaddyDemandController::class)->middleware('userIsAuth')->group
     Route::get('/paddy-demand/edit/{id}', 'edit_index')->name('paddy_demand_edit_index');
     Route::post('/paddy-demand/edit/{id}', 'edit')->name('paddy_demand_edit');
     Route::post('/paddy-demand/delete/{id}', 'delete')->name('paddy_demand_delete');
+});
+
+Route::controller(AdminController::class)->middleware('userIsAuth')->group(function () {
+    Route::get('/admin/dashboard', 'dashboard')->name('admin_dashboard');
+    Route::get('/admin/users', 'users')->name('admin_users');
+    Route::get('/admin/farm-land', 'farmLand')->name('admin_farmLand');
+    Route::get('/admin/bussiness', 'business')->name('admin_business');
+
+
+    Route::get('/admin/varieties', 'varieties')->name('admin_varieties');
+    Route::get('/admin/varieties/create', 'varieties_create')->name('admin_varieties_create');
+    Route::post('/admin/varieties/create/process', 'varieties_store')->name('admin_varieties_store');
+    Route::get('/admin/varieties/edit/{id}', 'varieties_edit')->name('admin_varieties_edit');
+    Route::post('/admin/varieties/edit/{id}', 'varieties_update')->name('admin_varieties_update');
+    Route::post('/admin/varieties/delete/{id}', 'varieties_delete')->name('admin_varieties_delete');
+
 });

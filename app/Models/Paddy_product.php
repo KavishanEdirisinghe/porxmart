@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paddy_product extends Model
 {
-    protected $table = 'paddy_production'; 
+    protected $table = 'paddy_production';
 
     protected $fillable = [
         'id',
@@ -20,4 +20,13 @@ class Paddy_product extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function paddy_varieties()
+    {
+        return $this->belongsTo(Paddy_varieties::class);
+    }
 }
